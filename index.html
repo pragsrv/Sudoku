@@ -1,14 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sudoku Game</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Sudoku Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Sudoku</h1>
-  <div class="sudoku-board" id="board"></div>
-  <script src="script.js"></script>
+    <div class="game-container">
+        <div class="start-screen" id="startScreen">
+            <div class="header">
+                <h1 class="title">Sudoku Master</h1>
+            </div>
+            
+            <div class="start-form">
+                <div class="input-group">
+                    <label for="username">Enter Your Name:</label>
+                    <input type="text" id="username" placeholder="Your name here..." maxlength="20">
+                </div>
+                
+                <div class="input-group">
+                    <label for="startDifficulty">Choose Difficulty:</label>
+                    <select id="startDifficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+                
+                <button class="btn start-btn" onclick="startGame()">Start Game</button>
+            </div>
+        </div>
+
+        <div class="game-screen" id="gameScreen" style="display: none;">
+            <div class="header">
+                <h1 class="title">Sudoku Master</h1>
+                <div class="player-info">Welcome, <span id="playerName"></span>!</div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <select id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                    <button class="btn" onclick="newGame()">New Game</button>
+                </div>
+                
+                <div class="control-group">
+                    <button class="btn secondary" onclick="getHint()">Hint</button>
+                    <button class="btn secondary" onclick="checkSolution()">Check</button>
+                    <button class="btn secondary" onclick="pauseGame()">Pause</button>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div>Time: <span id="timer">00:00</span></div>
+                </div>
+                <div class="stat-item">
+                    <div>Hints: <span id="hints">3</span></div>
+                </div>
+            </div>
+
+            <div class="sudoku-grid" id="grid"></div>
+
+            <div class="number-pad">
+                <button class="number-btn" onclick="selectNumber(1)">1</button>
+                <button class="number-btn" onclick="selectNumber(2)">2</button>
+                <button class="number-btn" onclick="selectNumber(3)">3</button>
+                <button class="number-btn" onclick="selectNumber(4)">4</button>
+                <button class="number-btn" onclick="selectNumber(5)">5</button>
+                <button class="number-btn" onclick="selectNumber(6)">6</button>
+                <button class="number-btn" onclick="selectNumber(7)">7</button>
+                <button class="number-btn" onclick="selectNumber(8)">8</button>
+                <button class="number-btn" onclick="selectNumber(9)">9</button>
+                <button class="number-btn clear" onclick="selectNumber(0)">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="winModal">
+        <div class="modal-content">
+            <h2>🎉 Congratulations! 🎉</h2>
+            <p>You solved the puzzle!</p>
+            <p>Time: <span id="finalTime"></span></p>
+            <button class="btn" onclick="closeModal(); newGame();">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
